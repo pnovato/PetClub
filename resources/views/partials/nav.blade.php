@@ -50,6 +50,7 @@
                                         <li><a href="{{ route('pet_member') }}">PetMember</a></li>
                                         <li><a href="{{ route('service') }}">services</a></li>
                                         <li><a href="{{ route('contact') }}">Contact</a></li>
+                                        <li><a href="{{ route('login') }}">Login</a></li>
                                     </ul>
                                 </nav>
                             </div>
