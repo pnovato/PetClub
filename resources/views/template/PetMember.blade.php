@@ -5,14 +5,14 @@
 @section('content')
 <div class="pet_member_area">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section_title text-center">
-                    <h3>Pet Member</h3>
-                    <p>See our available pets. Make an Adoption.</p>
-                    <p>Want to Help Us? Make a Donation.</p>
-                    <a href="{{ route('donation.form') }}" class="btn btn-success mt-3">Donate</a>
-                </div>
+        <div class="row align-items-center mb-5">
+            <div class="col-md-6 text-md-start text-center">
+                <h3 class="mb-2">Pet Member</h3>
+                <p class="mb-1">See our available pets. Make an Adoption.</p>
+            </div>
+            <div class="col-md-6 text-md-end text-center">
+                <h3 class="mb-2">Want to Help Us? Make a Donation.</h3>
+                <a href="{{ route('donation.form') }}" class="btn btn-success">Donate</a>
             </div>
         </div>
         <br>

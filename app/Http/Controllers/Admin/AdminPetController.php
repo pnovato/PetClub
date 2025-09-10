@@ -11,7 +11,7 @@ class AdminPetController extends Controller
 {
     public function index()
     {
-        $pets = Pet::with('adopter')->where('status', 'reserved')->get();
+        $pets = Pet::with('adopter')->where('status', 'reserved')->paginate(5);
         return view('admin.dashboard', compact('pets'));
     }
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminPetController;
 use App\Http\Controllers\Admin\AdminManagerController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\AdminDonationController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StoreFrontController;
@@ -86,6 +87,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/products/{product}', [StoreController::class, 'destroy'])->name('products.destroy');
     Route::get('/products/{id}/edit', [StoreController::class, 'edit'])->name('products.edit');
     Route::put('/products/{id}', [StoreController::class, 'update'])->name('products.update');
+    Route::get('/donations', [AdminDonationController::class, 'index'])->name('donations.index');
+    Route::get('/donations/{id}/download', [AdminDonationController::class, 'download'])->name('donations.download');
     Route::put('/profile', [AdminManagerController::class, 'updateProfile'])->name('profile.update');
     Route::get('/managers', [AdminManagerController::class, 'index'])->name('managers.index');
     Route::post('/managers', [AdminManagerController::class, 'store'])->name('managers.store');

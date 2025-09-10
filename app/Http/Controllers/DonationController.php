@@ -7,6 +7,9 @@ use App\Models\Donation;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DonationReceiptMail;
+
 
 class DonationController extends Controller
 {
@@ -29,7 +32,7 @@ class DonationController extends Controller
                     'product_data' => [
                         'name' => 'Doação PetClub',
                     ],
-                    'unit_amount' => $request->amount * 100, // em cêntimos
+                    'unit_amount' => $request->amount * 100,
                 ],
                 'quantity' => 1,
             ]],
@@ -46,6 +49,7 @@ class DonationController extends Controller
             'user_id' => Auth::id(),
             'amount' => $request->amount,
         ]);
+        Mail::to(Auth::user()->email)->send(new DonationReceiptMail($request->amount));
         return view('template.donation_success');
     }
 

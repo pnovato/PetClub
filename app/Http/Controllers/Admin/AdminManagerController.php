@@ -10,7 +10,7 @@ class AdminManagerController extends Controller
 {
     public function index()
     {
-        $managers = User::where('is_admin', true)->get();
+        $managers = User::where('is_admin', true)->paginate(5);
         return view('admin.managers', compact('managers'));
     }
 

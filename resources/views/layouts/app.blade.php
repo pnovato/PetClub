@@ -24,6 +24,17 @@
     <link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        nav a,
+        footer a 
+        {
+            text-decoration: none !important;
+        }
+    </style>
+
+
 </head>
 <body>
     @include('partials.nav')
