@@ -9,6 +9,11 @@
             <div class="col-lg-6 col-md-8">
                 <div class="register_form">
                     <h3>Register</h3>
+                    @if ($errors->any())
+                    <div>
+                        <ul>@foreach ($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group">

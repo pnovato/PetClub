@@ -4,6 +4,9 @@
 
 @section('content')
 <section class="contact-section">
+    <div class="whole-wrap"> <!-- esse bloco deixa alinhado no centro, essa linha mais as duas de baixo  -->
+		<div class="container box_1170">
+			<div class="section-top-border">
                 <div class="row">
                     <div class="col-12">
                         <h2 class="contact-title">Get in Touch</h2>
@@ -61,5 +64,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 </section>
 @endsection

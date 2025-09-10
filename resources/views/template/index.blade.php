@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="slider_area">
-         <!-- slider_area_start -->
+        <!-- slider_area_start -->
     <div class="slider_area">
         <div class="single_slider slider_bg_1 d-flex align-items-center">
             <div class="container">
@@ -13,7 +13,7 @@
                         <div class="slider_text">
                             <h3>We Care <br> <span>Your Pets</span></h3>
                             <p>Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit, sed do eiusmod.</p>
-                            <a href="contact.html" class="boxed-btn4">Contact Us</a>
+                            <a href="{{ route('contact') }}" class="boxed-btn4">Contact Us</a>
                         </div>
                     </div>
                 </div>

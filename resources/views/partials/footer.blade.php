@@ -21,9 +21,8 @@
                                 Our Servces
                             </h3>
                             <ul class="links">
-                                <li><a href="{{ route('pet_member') }}">Pet Member</a></li>
-                                <li><a href="{{ route('service') }}">Pet shop </a></li>
-                                <li><a href="{{ route('service') }}">Pet Adoption</a></li>
+                                <li><a href="{{ route('public.store') }}">Pet shop </a></li>
+                                <li><a href="{{ route('pet_member') }}">Pet Adoption</a></li>
                             </ul>
                         </div>
                     </div>

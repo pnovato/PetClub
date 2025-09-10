@@ -3,7 +3,7 @@
 @section('title', 'Blog')
 
 @section('content')
-<div class="whole-wrap">
+<div class="whole-wrap"> <!-- esse bloco deixa alinhado no centro, essa linha mais as duas de baixo  -->
 		<div class="container box_1170">
 			<div class="section-top-border">
                         <article class="blog_item">

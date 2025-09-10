@@ -9,6 +9,9 @@
             <div class="col-lg-6 col-md-8">
                 <div class="login_form">
                     <h3>Login</h3>
+                    @if ($errors->any())
+                        <div><ul>@foreach ($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">

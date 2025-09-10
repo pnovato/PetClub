@@ -1,5 +1,5 @@
 <header>
-        <div class="header-area ">
+    <div class="header-area ">
             <div class="header-top_area">
                 <div class="container">
                     <div class="row">
@@ -30,36 +30,14 @@
                     </div>
                 </div>
             </div>
-            <div id="sticky-header" class="main-header-area">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-3 col-lg-3">
-                            <div class="logo">
-                                <a href="index.html">
-                                    <img src="{{ asset('img/logo1.png') }}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-xl-9 col-lg-9">
-                            <div class="main-menu  d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-                                        <li><a  href="{{ route('home') }}">home</a></li>
-                                        <li><a href="{{ route('about') }}">about</a></li>
-                                        <li><a href="{{ route('blog') }}">blog</a></li>
-                                        <li><a href="{{ route('pet_member') }}">PetMember</a></li>
-                                        <li><a href="{{ route('service') }}">services</a></li>
-                                        <li><a href="{{ route('contact') }}">Contact</a></li>
-                                        <li><a href="{{ route('login') }}">Login</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+            @if(Auth::check())
+                @if(Auth::user()->is_admin)
+                    @include('partials.nav-admin')
+                @else
+                    @include('partials.nav-user')
+                @endif
+            @else
+                @include('partials.nav-guest')
+            @endif
+    </div>
+</header>

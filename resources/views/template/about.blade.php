@@ -18,6 +18,7 @@
                                 As you care</h3>
                             <p>Lorem ipsum dolor sit , consectetur adipiscing elit, sed do <br> iusmod tempor incididunt ut labore et dolore magna aliqua. <br> Quis ipsum suspendisse ultrices gravida. Risus commodo <br>
                                 viverra maecenas accumsan.</p>
+                            <a href="{{ route('blog') }}" class="boxed-btn3">About Us</a>
                         </div>
                     </div>
                 </div>
