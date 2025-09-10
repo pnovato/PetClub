@@ -16,7 +16,7 @@
                             <li><a href="{{ route('about') }}">about</a></li>
                             <li><a href="{{ route('blog') }}">blog</a></li>
                             <li><a href="{{ route('pets.index') }}">PetMember</a></li>
-                            <li><a href="{{ route('.public.store') }}">store</a></li>
+                            <li><a href="{{ route('public.store') }}">store</a></li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">

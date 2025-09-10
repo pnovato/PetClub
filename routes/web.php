@@ -7,11 +7,13 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\AdminPetController;
 use App\Http\Controllers\Admin\AdminManagerController;
 use App\Http\Controllers\Admin\StoreController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\StoreFrontController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StoreFrontController;
+use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('template.index');
@@ -72,11 +74,6 @@ Route::get('/admin/teste', function () {
     return 'Bem-vindo, admin!';
 })->middleware(['auth', 'admin']);
 
-
-    
-Route::middleware(['auth'])->group(function () {
-    Route::redirect('settings', 'settings/profile');
-});
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminPetController::class, 'index'])->name('dashboard');
     Route::post('/pets/{id}/approve', [AdminPetController::class, 'approve'])->name('pets.approve');
@@ -93,10 +90,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/managers', [AdminManagerController::class, 'index'])->name('managers.index');
     Route::post('/managers', [AdminManagerController::class, 'store'])->name('managers.store');
     Route::delete('/managers/{id}', [AdminManagerController::class, 'destroy'])->name('managers.destroy');
-
 });
 Route::middleware(['auth'])->group(function () {
+    Route::redirect('settings', 'settings/profile');
     Route::get('/pets/{id}/adopt', [PetController::class, 'adopt'])->name('pet.adopt');
+    Route::get('/member/donate', [DonationController::class, 'showForm'])->name('donation.form');
+    Route::post('/member/donate', [DonationController::class, 'process'])->name('donation.process');
+    Route::get('/member/donation/success', [DonationController::class, 'success'])->name('donation.success');
+    Route::get('/member/donation/cancel', [DonationController::class, 'cancel'])->name('donation.cancel');
 });
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

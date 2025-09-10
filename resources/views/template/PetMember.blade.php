@@ -9,10 +9,13 @@
             <div class="col-lg-12">
                 <div class="section_title text-center">
                     <h3>Pet Member</h3>
-                    <p>Veja os animais disponíveis para adoção e torne-se um membro para adotar um pet.</p>
+                    <p>See our available pets. Make an Adoption.</p>
+                    <p>Want to Help Us? Make a Donation.</p>
+                    <a href="{{ route('donation.form') }}" class="btn btn-success mt-3">Donate</a>
                 </div>
             </div>
         </div>
+        <br>
             @if(isset($pets) && $pets->count())
                 <div class="row">
                     @foreach($pets as $pet)
@@ -27,11 +30,11 @@
                             <div class="pet_info">
                                 <h4>{{ $pet->name }}</h4>
                                 <p>{{ $pet->description }}</p>
-                                <a href="{{ route('pet.details', $pet->id) }}" class="boxed-btn3">Ver Detalhes</a>
+                                <a href="{{ route('pet.details', $pet->id) }}" class="boxed-btn3">Details</a>
                                 @if(Auth::check() && (Auth::user()->is_member ?? true))
-                                    <a href="{{ route('pet.adopt', $pet->id) }}" class="boxed-btn4">Adotar</a>
+                                    <a href="{{ route('pet.adopt', $pet->id) }}" class="boxed-btn4">Adopt</a>
                                 @else
-                                    <a href="{{ route('login') }}?redirect={{ urlencode(request()->fullUrl()) }}" class="boxed-btn4">Faça Login para adotar</a>
+                                    <a href="{{ route('login') }}?redirect={{ urlencode(request()->fullUrl()) }}" class="boxed-btn4">Login to Adopt</a>
                                 @endif
                             </div>
                         </div>
@@ -39,7 +42,7 @@
                     @endforeach
                 </div>
             @else
-                <p>Nenhum animal disponível no momento.</p>
+                <p>No pet available.</p>
             @endif
     </div>
 </div>

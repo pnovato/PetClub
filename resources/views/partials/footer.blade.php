@@ -10,7 +10,7 @@
                             </h3>
                             <ul class="address_line">
                                 <li>+351 939 520 216</li>
-                                <li><a href="#">EMAIL ENTRA AQUI</a></li>
+                                <li><a href="#">info@PetClub.com</a></li>
                                 <li>Porto, Portugal</li>
                             </ul>
                         </div>
@@ -22,7 +22,7 @@
                             </h3>
                             <ul class="links">
                                 <li><a href="{{ route('public.store') }}">Pet shop </a></li>
-                                <li><a href="{{ route('pet_member') }}">Pet Adoption</a></li>
+                                <li><a href="{{ route('pets.index') }}">Pet Adoption</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             </h3>
                             <ul class="links">
                                 <li><a href="{{ route('about') }}">About Us</a></li>
-                                <li><a href="{{ route('pet_member') }}">Make an Adoption</a></li>  <!-- para adotar primeiro tem que se registar -->
+                                <li><a href="{{ route('pets.index') }}">Make an Adoption</a></li>
                                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
                             </ul>
                         </div>
@@ -78,7 +78,7 @@
     </footer>
     <!-- footer_end  -->
 
-     <!-- JS here -->
+    <!-- JS here -->
     <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
     <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
     <script src="{[ asset('js/popper.min.js') }}"></script>
@@ -117,11 +117,11 @@
         $('#datepicker2').datepicker({
             iconsLibrary: 'fontawesome',
             icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
+            rightIcon: '<span class="fa fa-caret-down"></span>'
+        }
 
         });
         var timepicker = $('#timepicker').timepicker({
-         format: 'HH.MM'
-     });
+        format: 'HH.MM'
+    });
     </script>
