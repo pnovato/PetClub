@@ -12,7 +12,6 @@ use Illuminate\Queue\SerializesModels;
 class PurchaseConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $order;
 
     public function __construct($order)
@@ -22,7 +21,6 @@ class PurchaseConfirmation extends Mailable
 
     public function build()
     {
-        return $this->subject('Purchase Confirmation - PetClub')
-                    ->view('emails.purchase_confirmation');
+        return $this->subject('Purchase Confirmation - PetClub')->view('emails.purchase_confirmation');
     }
 }

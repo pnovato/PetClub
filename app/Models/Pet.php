@@ -24,7 +24,6 @@ class Pet extends Model
         return $this->belongsTo(User::class, 'adopted_by');
     }
 
-    // Escopo: apenas disponíveis
     public function scopeAvailable($query)
     {
         return $query->where('status', 'available');

@@ -21,19 +21,14 @@ class PetController extends Controller
     public function adopt($id)
     {
         $pet = Pet::findOrFail($id);
-
-        // Exemplo simples de reserva
-        if ($pet->status !== 'available') {
-            return back()->with('error','Este animal já não está disponível.');
-        }
-
-        $pet->update([
+        if ($pet->status !== 'available')
+            return back()->with('error','This pet is not available anymore.');
+        $pet->update
+        ([
             'status'     => 'reserved',
             'adopted_by' => auth()->id(),
             'adopted_at' => now(),
         ]);
-
-        return redirect()->route('pet.details', $pet->id)
-            ->with('success','Pedido de adoção enviado! Entraremos em contacto.');
+        return redirect()->route('pet.details', $pet->id)->with('success','Adoption Request sent.');
     }
 }

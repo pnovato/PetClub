@@ -24,13 +24,17 @@ Route::get('/blog', function () { return view('template.blog'); })->name('blog')
 
 Route::get('/contact', function () { return view('template.contact'); })->name('contact');
 
-Route::get('/store', function () {
-    return view('template.store');
-})->name('store');
+Route::get('/store', function () { return view('template.store'); })->name('store');
 
-Route::get('/PetMember', function () {
-    return view('template.PetMember');
-})->name('pet_member');
+Route::get('/PetMember', function () { return view('template.PetMember'); })->name('pet_member');
+
+Route::get('/login', function () { return view('auth.login'); })->name('login');
+
+Route::get('/register', function () { return view('auth.register'); })->name('register');
+
+Route::get('/forgot-password', function () { return view('auth.forgot-password'); })->name('password.reset');
+
+Route::get('/admin/teste', function () { return 'Bem-vindo, admin!'; })->middleware(['auth', 'admin']);
 
 Route::get('/pets', [PetController::class, 'index'])->name('pets.index');
 Route::get('/pets/{id}', [PetController::class, 'show'])->name('pet.details');
@@ -47,25 +51,7 @@ Route::get('/store', [StoreFrontController::class, 'index'])->name('public.store
 Route::post('/store/payment', [PaymentController::class, 'process'])->name('store.payment');
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('auth.register');  
-})->name('register');
-
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->name('password.reset');
-
-Route::view('/dashboard', 'template.dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::get('/admin/teste', function () {
-    return 'Bem-vindo, admin!';
-})->middleware(['auth', 'admin']);
+Route::view('/dashboard', 'template.dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () 
 {
@@ -114,25 +100,12 @@ Route::middleware('guest')->group(function ()
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login', [LoginController::class, 'store']);
 });
-Route::get('/forgot-password', function () 
-{
-    return view('auth.forgot-password');
-})->name('password.reset');
-Route::post('/forgot-password', [ForgotPasswordController::class, 'reset'])
-    ->name('password.reset.submit');
+Route::get('/forgot-password', function () { return view('auth.forgot-password'); })->name('password.reset');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'reset'])->name('password.reset.submit');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
-Route::middleware(['auth','verified'])->group(function () 
-{
-    Route::view('/dashboard', 'template.dashboard')->name('dashboard');
-}); 
-Route::get('/email/verify', [VerificationController::class, 'notice'])
-    ->middleware('auth')
-    ->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
-Route::post('/email/verification-notification', [VerificationController::class, 'send'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
+Route::middleware(['auth','verified'])->group(function () { Route::view('/dashboard', 'template.dashboard')->name('dashboard'); }); 
+Route::get('/email/verify', [VerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [VerificationController::class, 'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 require __DIR__.'/auth.php';

@@ -11,15 +11,14 @@ class ForgotPasswordController extends Controller
 {
     public function reset(Request $request)
     {
-        $request->validate([
+        $request->validate
+        ([
             'email' => 'required|email|exists:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
         $user = User::where('email', $request->email)->first();
         $user->password = Hash::make($request->password);
         $user->save();
-
         return redirect()->route('login')->with('status', 'Password changed!');
     }
 }

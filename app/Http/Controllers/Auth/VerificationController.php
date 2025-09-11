@@ -21,12 +21,9 @@ class VerificationController extends Controller
 
     public function send(Request $request)
     {
-        if ($request->user()->hasVerifiedEmail()) {
+        if ($request->user()->hasVerifiedEmail())
             return redirect()->route('dashboard');
-        }
-
         $request->user()->sendEmailVerificationNotification();
-
         return back()->with('status', 'verification-link-sent');
     }
 }

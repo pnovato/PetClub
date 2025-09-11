@@ -96,7 +96,7 @@
             @if ($pendingPets->isEmpty())
                 <p class="text-muted">Sem pedidos pendentes.</p>
             @else
-            <table class="table">
+        <table class="table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -125,8 +125,8 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 </div>
 @endif
 @endsection

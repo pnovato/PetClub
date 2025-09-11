@@ -16,7 +16,8 @@ class StoreController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $request->validate
+        ([
             'name' => 'required|string',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
@@ -28,7 +29,8 @@ class StoreController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) 
+        {
             $imagePath = $request->file('image')->store('products', 'public');
             $product->image = $imagePath;
         }
@@ -49,14 +51,16 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validated = $request->validate
+        ([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) 
+        {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/products', $imageName);
             $validated['image'] = $imageName;

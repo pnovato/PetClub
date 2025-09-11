@@ -20,11 +20,13 @@ class DonationController extends Controller
 
     public function process(Request $request)
     {
-        $request->validate([
+        $request->validate
+        ([
             'amount' => 'required|numeric|min:1',
         ]);
         Stripe::setApiKey(env('STRIPE_SECRET'));
-        $session = Session::create([
+        $session = Session::create
+        ([
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'price_data' => [
@@ -45,7 +47,8 @@ class DonationController extends Controller
 
     public function success(Request $request)
     {
-        Donation::create([
+        Donation::create
+        ([
             'user_id' => Auth::id(),
             'amount' => $request->amount,
         ]);

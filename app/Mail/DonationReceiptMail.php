@@ -9,7 +9,6 @@ use Illuminate\Queue\SerializesModels;
 class DonationReceiptMail extends Mailable
 {
     use Queueable, SerializesModels;
-
     public $amount;
 
     public function __construct($amount)
