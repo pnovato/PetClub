@@ -16,21 +16,13 @@ use App\Http\Controllers\DonationController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('template.index');
-})->name('home');
+Route::get('/', function () { return view('template.index'); })->name('home');
 
-Route::get('/about', function () {
-    return view('template.about');
-})->name('about');
+Route::get('/about', function () { return view('template.about'); })->name('about');
 
-Route::get('/blog', function () {
-    return view('template.blog');
-})->name('blog');
+Route::get('/blog', function () { return view('template.blog'); })->name('blog');
 
-Route::get('/contact', function () {
-    return view('template.contact');
-})->name('contact');
+Route::get('/contact', function () { return view('template.contact'); })->name('contact');
 
 Route::get('/store', function () {
     return view('template.store');
@@ -75,8 +67,16 @@ Route::get('/admin/teste', function () {
     return 'Bem-vindo, admin!';
 })->middleware(['auth', 'admin']);
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () 
+{
     Route::get('/dashboard', [AdminPetController::class, 'index'])->name('dashboard');
+    Route::resource('pets', AdminPetController::class);
+    Route::get('/pets', [AdminPetController::class, 'index'])->name('pets.index');
+    Route::get('/pets/create', [AdminPetController::class, 'create'])->name('pets.create');
+    Route::post('/pets', [AdminPetController::class, 'store'])->name('pets.store');
+    Route::get('/pets/{id}/edit', [AdminPetController::class, 'edit'])->name('pets.edit');
+    Route::put('/pets/{id}', [AdminPetController::class, 'update'])->name('pets.update');
+    Route::delete('/pets/{id}', [AdminPetController::class, 'destroy'])->name('pets.destroy');
     Route::post('/pets/{id}/approve', [AdminPetController::class, 'approve'])->name('pets.approve');
     Route::post('/pets/{id}/reject', [AdminPetController::class, 'reject'])->name('pets.reject');
     Route::get('/adoptions', [AdminPetController::class, 'adoptions'])->name('pets.adoptions');
@@ -94,7 +94,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/managers', [AdminManagerController::class, 'store'])->name('managers.store');
     Route::delete('/managers/{id}', [AdminManagerController::class, 'destroy'])->name('managers.destroy');
 });
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () 
+{
     Route::redirect('settings', 'settings/profile');
     Route::get('/pets/{id}/adopt', [PetController::class, 'adopt'])->name('pet.adopt');
     Route::get('/member/donate', [DonationController::class, 'showForm'])->name('donation.form');
@@ -106,19 +107,22 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login', [LoginController::class, 'store']);
 });
-Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function () 
+{
     Route::get('/register', [RegisterController::class, 'create'])->name('register');
     Route::post('/register', [RegisterController::class, 'store']);
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login', [LoginController::class, 'store']);
 });
-Route::get('/forgot-password', function () {
+Route::get('/forgot-password', function () 
+{
     return view('auth.forgot-password');
 })->name('password.reset');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'reset'])
     ->name('password.reset.submit');
 Route::post('/logout', [LoginController::class, 'destroy'])->middleware('auth')->name('logout');
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth','verified'])->group(function () 
+{
     Route::view('/dashboard', 'template.dashboard')->name('dashboard');
 }); 
 Route::get('/email/verify', [VerificationController::class, 'notice'])

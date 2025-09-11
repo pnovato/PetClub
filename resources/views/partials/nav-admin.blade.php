@@ -15,8 +15,7 @@
                                 <li><a href="{{ route('admin.managers.index') }}">Managers</a></li>
                                 <li><a href="{{ route('admin.store') }}">Store</a></li>
                                 <li><a href="{{ route('admin.donations.index') }}">Donation</a></li>
-                                <li><a href="/">Pets</a></li>
-                                <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                <li><a href="{{ route('admin.pets.index') }}">Pets</a></li>
                                 <li><a href="{{ route('admin.pets.adoptions') }}">History</a></li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
